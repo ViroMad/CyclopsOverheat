@@ -1,4 +1,4 @@
-﻿#define BepInEX_Config // Switch to BepInEX ONLY
+﻿//#define BepInEX_Config // Switch to BepInEX ONLY
 
 #if BepInEX_Config
 using BepInEx;

@@ -1,4 +1,4 @@
-﻿#define BepInEX_Config // Switch to BepInEX ONLY, No Nautilus
+﻿//#define BepInEX_Config // Switch to BepInEX ONLY, No Nautilus
 
 using BepInEx;
 
@@ -22,12 +22,10 @@ using static VFXParticlesPool;
 namespace SubOverheat
 {
 	[BepInPlugin(ModGUID, ModName, ModVersion)]
-    //[BepInDependency("com.ahk1221.smlhelper")]
 #if !BepInEX_Config
-    [BepInDependency(Nautilus.PluginInfo.PLUGIN_GUID)]
+    [BepInDependency(Nautilus.PluginInfo.PLUGIN_GUID, BepInDependency.DependencyFlags.HardDependency)]
 #endif
 
-    //[BepInIncompatibility("com.ahk1221.smlhelper")]
     public class CyclopsOverheat : BaseUnityPlugin
     {
         #region
@@ -38,13 +36,13 @@ namespace SubOverheat
         #endregion
 
 		public static BepInEx.Logging.ManualLogSource myLogger = new BepInEx.Logging.ManualLogSource(ModName);
+        private static float DeltaTime;
+        public static int CurrentOverheat;
+        public static SubFire SubEntity;
 #if BepInEX_Config
-		public static ConfigSettings BepConfigSettings;
-		private static float DeltaTime;
-		public static int CurrentOverheat;
-		public static SubFire SubEntity;
+		public static ConfigSettings BepConfigSettings;		
 #else
-	internal static ConfigSettings ConfigSettings { get; } = OptionsPanelHandler.RegisterModOptions<ConfigSettings>();
+        internal static ConfigSettings ConfigSettings { get; } = OptionsPanelHandler.RegisterModOptions<ConfigSettings>();
 #endif
 
         private void Awake()
@@ -56,7 +54,7 @@ namespace SubOverheat
 #if BepInEX_Config
 			BepConfigSettings = new ConfigSettings(this.Config);
 #else
-			SaveUtils.RegisterOnSaveEvent(new System.Action(ConfigSettings.Save));  //=> ErrorMessage.AddMessage("We do be saving!"));
+			SaveUtils.RegisterOnSaveEvent(new System.Action(ConfigSettings.Save)); 
 #endif
 
             Harmony Harmonything = new Harmony(ModGUID);
