@@ -1,1 +1,0 @@
-copy "obj\Release\net472\CyclopsOverheat.dll" "D:\SteamLibrary\steamapps\common\Subnautica\BepInEx\plugins\Test Mods"
