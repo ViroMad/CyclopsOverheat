@@ -27,8 +27,14 @@
       <HintPath>..\..\Library\Assembly-CSharp_publicized.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="SMLHelper">
-      <HintPath>..\..\Library\SMLHelper_publicized.dll</HintPath>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\..\..\..\..\SteamLibrary\steamapps\common\Subnautica\Subnautica_Data\Managed\publicized_assemblies\Assembly-CSharp-firstpass_publicized.dll</HintPath>
+    </Reference>
+    <Reference Include="Nautilus">
+      <HintPath>..\..\Library\Nautilus.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\..\..\SteamLibrary\steamapps\common\Subnautica\Subnautica_Data\Managed\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\..\Library\UnityEngine.dll</HintPath>
@@ -37,6 +43,9 @@
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\..\Library\UnityEngine.CoreModule.dll</HintPath>
       <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\..\SteamLibrary\steamapps\common\Subnautica\Subnautica_Data\Managed\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   
@@ -99,4 +108,8 @@
       <Private>false</Private>
     </Reference>
   </ItemGroup>
+  
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="call copyme.bat" />
+  </Target>
 </Project>
